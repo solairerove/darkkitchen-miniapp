@@ -25,11 +25,7 @@ public class AdminService {
     private final AppProperties appProperties;
     private final Clock clock;
 
-    public AdminService(OrderService orderService, AppProperties appProperties) {
-        this(orderService, appProperties, Clock.systemUTC());
-    }
-
-    AdminService(OrderService orderService, AppProperties appProperties, Clock clock) {
+    public AdminService(OrderService orderService, AppProperties appProperties, Clock clock) {
         this.orderService = orderService;
         this.appProperties = appProperties;
         this.clock = clock;

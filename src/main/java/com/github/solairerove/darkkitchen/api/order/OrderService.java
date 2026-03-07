@@ -31,14 +31,8 @@ public class OrderService {
 
     public OrderService(OrderRepository orderRepository,
                         ProductService productService,
-                        AppProperties appProperties) {
-        this(orderRepository, productService, appProperties, Clock.systemUTC());
-    }
-
-    OrderService(OrderRepository orderRepository,
-                 ProductService productService,
-                 AppProperties appProperties,
-                 Clock clock) {
+                        AppProperties appProperties,
+                        Clock clock) {
         this.orderRepository = orderRepository;
         this.productService = productService;
         this.appProperties = appProperties;
