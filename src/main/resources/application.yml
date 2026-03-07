@@ -1,0 +1,27 @@
+app:
+  timezone: Asia/Ho_Chi_Minh
+  order:
+    cutoff-hour: 18
+    cutoff-minute: 0
+  telegram:
+    bot-token: ${TELEGRAM_BOT_TOKEN:}
+    summary-chat-id: ${TELEGRAM_SUMMARY_CHAT_ID:}
+    summary-cron: ${TELEGRAM_SUMMARY_CRON:0 0 19 * * *}
+
+spring:
+  datasource:
+    url: ${DB_URL:jdbc:postgresql://localhost:5432/darkkitchen}
+    username: ${DB_USER:darkkitchen}
+    password: ${DB_PASS:darkkitchen}
+  jpa:
+    hibernate:
+      ddl-auto: validate
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+  flyway:
+    locations: classpath:db/migration
+
+server:
+  error:
+    include-message: never
