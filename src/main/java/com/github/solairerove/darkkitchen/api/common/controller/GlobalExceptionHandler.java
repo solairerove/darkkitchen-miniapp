@@ -5,6 +5,8 @@ import com.github.solairerove.darkkitchen.api.common.exception.BadRequestExcepti
 import com.github.solairerove.darkkitchen.api.common.exception.ForbiddenException;
 import com.github.solairerove.darkkitchen.api.common.exception.NotFoundException;
 import jakarta.validation.ConstraintViolationException;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.FieldError;
@@ -18,18 +20,23 @@ import java.util.List;
 @RestControllerAdvice
 public class GlobalExceptionHandler {
 
+    private static final Logger log = LoggerFactory.getLogger(GlobalExceptionHandler.class);
+
     @ExceptionHandler(NotFoundException.class)
     public ResponseEntity<ErrorResponse> handleNotFound(NotFoundException ex) {
+        log.warn("Not found: {}", ex.getMessage(), ex);
         return build(HttpStatus.NOT_FOUND, ex.getMessage(), "NOT_FOUND", List.of());
     }
 
     @ExceptionHandler(ForbiddenException.class)
     public ResponseEntity<ErrorResponse> handleForbidden(ForbiddenException ex) {
+        log.warn("Forbidden: {}", ex.getMessage(), ex);
         return build(HttpStatus.FORBIDDEN, ex.getMessage(), "FORBIDDEN", List.of());
     }
 
     @ExceptionHandler({BadRequestException.class, ConstraintViolationException.class})
     public ResponseEntity<ErrorResponse> handleBadRequest(Exception ex) {
+        log.warn("Bad request: {}", ex.getMessage(), ex);
         return build(HttpStatus.BAD_REQUEST, ex.getMessage(), "BAD_REQUEST", List.of());
     }
 
@@ -39,11 +46,13 @@ public class GlobalExceptionHandler {
         for (FieldError fieldError : ex.getBindingResult().getFieldErrors()) {
             details.add(fieldError.getField() + ": " + fieldError.getDefaultMessage());
         }
+        log.warn("Validation failed: {}", details, ex);
         return build(HttpStatus.BAD_REQUEST, "Validation failed", "VALIDATION_ERROR", details);
     }
 
     @ExceptionHandler(Exception.class)
     public ResponseEntity<ErrorResponse> handleUnexpected(Exception ex) {
+        log.error("Unhandled exception", ex);
         return build(HttpStatus.INTERNAL_SERVER_ERROR, "Internal server error", "INTERNAL_ERROR", List.of());
     }
 

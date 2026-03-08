@@ -36,7 +36,7 @@ docker compose down -v
 
 ## Business logic
 
-### ProductService
+### Product Service
 
 - GET /api/products getActiveProducts() → list of active products, sorted by sortOrder (doesn't work)
 - GET /api/products/{id} getProduct(id) → return by id, 404 if not found
@@ -48,3 +48,22 @@ to address
 - sorting by sortOrder
 - pagination
 - how to activate back if an item is marked as deleted and doesn't return in the list
+
+### Order Service
+
+telegramUserId is fetched from the request header X-Telegram-User-Id
+
+- POST /api/orders createOrder() → create new order
+- GET /api/orders/my getMyOrders(telegramUserId) → return orders for user
+- GET /api/orders/{id} .getOrder(telegramUserId, id) → return by id and user
+- POST /api/orders/{id}/cancel cancelOrder(telegramUserId, id) → cancel order
+
+to address
+- internal server error if user is not found
+- pagination
+
+### Admin Service
+
+- GET /api/admin/orders/summary?date=2026-03-08 → get data summary for orders for date or as default tomorrow 
+- GET /api/admin/orders?date=2026-03-08 → get all orders for date or as default tomorrow
+- PUT /api/admin/orders/{id}/status → update order status
