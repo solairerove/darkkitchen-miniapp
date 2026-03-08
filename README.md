@@ -84,3 +84,27 @@ Credentials are configured via environment variables:
 
 - `ADMIN_USERNAME` (default: `admin`)
 - `ADMIN_PASSWORD` (default: `admin123`)
+
+## Admin Panel
+
+- URL: `/admin` (redirects to `/admin/dashboard`)
+- Template engine: Thymeleaf
+- Requires admin login (same credentials as above)
+
+The panel calls existing admin APIs directly:
+
+- `GET /api/admin/orders/summary`
+- `GET /api/admin/orders`
+- `PUT /api/admin/orders/{id}/status`
+- `POST /api/admin/products`
+- `PUT /api/admin/products/{id}`
+- `DELETE /api/admin/products/{id}`
+
+Plus:
+
+- `GET /api/health` quick check widget
+
+to address
+- pagination
+- sorting
+- total for orders summary and for orders list

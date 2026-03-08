@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>DarkKitchen Admin</title>
+    <link rel="stylesheet" th:href="@{/admin/admin.css}">
+</head>
+<body>
+<header class="topbar">
+    <h1>DarkKitchen Admin</h1>
+    <form th:action="@{/logout}" method="post">
+        <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}">
+        <button type="submit" class="button danger">Logout</button>
+    </form>
+</header>
+
+<main class="layout" th:attr="data-default-date=${defaultDate}">
+    <section class="card">
+        <h2>Order Summary</h2>
+        <div class="toolbar">
+            <label for="summaryDate">Delivery Date</label>
+            <input id="summaryDate" type="date">
+            <button id="loadSummaryBtn" type="button" class="button">Load Summary</button>
+            <span id="summaryMeta" class="muted"></span>
+        </div>
+        <div id="summaryError" class="error"></div>
+        <div class="stats">
+            <div class="stat">
+                <div class="label">Orders</div>
+                <div id="totalOrders" class="value">-</div>
+            </div>
+            <div class="stat">
+                <div class="label">Products</div>
+                <div id="totalProducts" class="value">-</div>
+            </div>
+        </div>
+        <div class="table-wrapper">
+            <table>
+                <thead>
+                <tr>
+                    <th>Product</th>
+                    <th>Qty</th>
+                </tr>
+                </thead>
+                <tbody id="summaryProductsBody"></tbody>
+            </table>
+        </div>
+    </section>
+
+    <section class="card">
+        <h2>Orders</h2>
+        <div class="toolbar">
+            <label for="ordersDate">Delivery Date</label>
+            <input id="ordersDate" type="date">
+            <button id="loadOrdersBtn" type="button" class="button">Load Orders</button>
+        </div>
+        <div id="ordersError" class="error"></div>
+        <div class="table-wrapper">
+            <table>
+                <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Customer</th>
+                    <th>Phone</th>
+                    <th>Status</th>
+                    <th>Items</th>
+                    <th>Total</th>
+                    <th>Action</th>
+                </tr>
+                </thead>
+                <tbody id="ordersBody"></tbody>
+            </table>
+        </div>
+        <datalist id="orderStatuses">
+            <option th:each="status : ${orderStatuses}" th:value="${status.name()}"></option>
+        </datalist>
+    </section>
+
+    <section class="card">
+        <h2>Products</h2>
+        <form id="createProductForm" class="create-grid">
+            <input name="name" placeholder="Name" required maxlength="255">
+            <input name="description" placeholder="Description" maxlength="2000">
+            <input name="price" placeholder="Price" type="number" min="1" required>
+            <input name="unit" placeholder="Unit" maxlength="50" required>
+            <input name="sortOrder" placeholder="Sort order" type="number" value="0" required>
+            <button type="submit" class="button">Create Product</button>
+        </form>
+        <div id="productsError" class="error"></div>
+        <div class="table-wrapper">
+            <table>
+                <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Name</th>
+                    <th>Description</th>
+                    <th>Price</th>
+                    <th>Unit</th>
+                    <th>Sort</th>
+                    <th>Actions</th>
+                </tr>
+                </thead>
+                <tbody id="productsBody"></tbody>
+            </table>
+        </div>
+    </section>
+
+    <section class="card">
+        <h2>Quick Checks</h2>
+        <div class="toolbar">
+            <button id="healthBtn" type="button" class="button secondary">Ping /api/health</button>
+            <button id="refreshAllBtn" type="button" class="button secondary">Refresh All</button>
+        </div>
+        <pre id="healthBox" class="health-box">Not checked yet.</pre>
+    </section>
+</main>
+
+<script th:src="@{/admin/admin.js}"></script>
+</body>
+</html>
