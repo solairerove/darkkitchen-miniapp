@@ -67,3 +67,20 @@ to address
 - GET /api/admin/orders/summary?date=2026-03-08 → get data summary for orders for date or as default tomorrow 
 - GET /api/admin/orders?date=2026-03-08 → get all orders for date or as default tomorrow
 - PUT /api/admin/orders/{id}/status → update order status
+
+## Security
+
+Admin endpoints are protected with Spring Security:
+
+- `/api/admin/**`
+- `/admin/**` (reserved for Thymeleaf admin pages)
+
+Authentication options:
+
+- Form login at `/login` (for browser/Thymeleaf flows)
+- HTTP Basic auth (for API clients/scripts)
+
+Credentials are configured via environment variables:
+
+- `ADMIN_USERNAME` (default: `admin`)
+- `ADMIN_PASSWORD` (default: `admin123`)
