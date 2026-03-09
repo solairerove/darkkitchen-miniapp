@@ -5,6 +5,12 @@ TG mini app for poc for dark kitchen
 
 The app is expected to run manually (Maven/IntelliJ). Docker Compose is only for infra.
 
+## Local start
+
+```shell
+mvn clean install && java -jar target/darkkitchen-miniapp-0.0.1-SNAPSHOT.jar --spring.profiles.active=dev
+```
+
 ### Start PostgreSQL
 
 ```bash
