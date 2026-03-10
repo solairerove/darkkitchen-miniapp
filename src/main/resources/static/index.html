@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <title>Заказать</title>
+    <script src="https://telegram.org/js/telegram-web-app.js"></script>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div id="view-catalog" class="view">
+    <h2>Каталог</h2>
+    <div id="product-list"></div>
+</div>
+
+<div id="view-checkout" class="view hidden">
+    <h2>Оформление заказа</h2>
+    <div id="cart-summary"></div>
+    <input id="input-name" type="text" placeholder="Ваше имя" maxlength="255">
+    <input id="input-phone" type="tel" placeholder="Телефон (необязательно)">
+    <textarea id="input-note" placeholder="Комментарий к заказу"></textarea>
+    <p id="delivery-info"></p>
+</div>
+
+<div id="view-confirmation" class="view hidden">
+    <h2>Заказ принят</h2>
+    <p id="confirmation-text"></p>
+    <button id="btn-close" type="button">Закрыть</button>
+</div>
+
+<script src="app.js"></script>
+</body>
+</html>

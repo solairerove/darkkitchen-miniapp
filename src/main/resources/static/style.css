@@ -1,0 +1,149 @@
+:root {
+    --tg-theme-bg-color: #ffffff;
+    --tg-theme-text-color: #000000;
+    --tg-theme-hint-color: #999999;
+    --tg-theme-button-color: #2481cc;
+    --tg-theme-button-text-color: #ffffff;
+    --tg-theme-secondary-bg-color: #f1f1f1;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    background: var(--tg-theme-bg-color);
+    color: var(--tg-theme-text-color);
+    padding: 16px;
+    padding-bottom: 80px;
+}
+
+.hidden {
+    display: none;
+}
+
+h2 {
+    font-size: 18px;
+    margin-bottom: 16px;
+}
+
+.product-card {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 12px;
+    margin-bottom: 8px;
+    background: var(--tg-theme-secondary-bg-color);
+    border-radius: 12px;
+    gap: 12px;
+}
+
+.product-name {
+    font-weight: 600;
+    font-size: 15px;
+}
+
+.product-price {
+    font-size: 14px;
+    color: var(--tg-theme-button-color);
+    margin-top: 2px;
+}
+
+.product-desc {
+    font-size: 12px;
+    color: var(--tg-theme-hint-color);
+    margin-top: 4px;
+}
+
+.product-controls {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    flex-shrink: 0;
+}
+
+.btn-plus,
+.btn-minus {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    border: none;
+    background: var(--tg-theme-button-color);
+    color: var(--tg-theme-button-text-color);
+    font-size: 20px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.qty {
+    font-size: 16px;
+    font-weight: 600;
+    min-width: 20px;
+    text-align: center;
+}
+
+.cart-item {
+    display: flex;
+    justify-content: space-between;
+    padding: 8px 0;
+    border-bottom: 1px solid var(--tg-theme-secondary-bg-color);
+    font-size: 14px;
+    gap: 8px;
+}
+
+.cart-total {
+    font-weight: 700;
+    text-align: right;
+    padding-top: 8px;
+    font-size: 16px;
+}
+
+input,
+textarea {
+    width: 100%;
+    margin-top: 12px;
+    padding: 10px 12px;
+    border-radius: 10px;
+    border: 1px solid var(--tg-theme-hint-color);
+    background: var(--tg-theme-secondary-bg-color);
+    color: var(--tg-theme-text-color);
+    font-size: 15px;
+    outline: none;
+}
+
+textarea {
+    height: 80px;
+    resize: none;
+}
+
+#delivery-info {
+    margin-top: 12px;
+    color: var(--tg-theme-hint-color);
+    font-size: 12px;
+}
+
+#view-confirmation {
+    text-align: center;
+    padding-top: 40px;
+}
+
+#confirmation-text {
+    font-size: 16px;
+    margin: 24px 0;
+    color: var(--tg-theme-hint-color);
+}
+
+#btn-close {
+    padding: 12px 32px;
+    background: var(--tg-theme-button-color);
+    color: var(--tg-theme-button-text-color);
+    border: none;
+    border-radius: 10px;
+    font-size: 16px;
+    cursor: pointer;
+}
