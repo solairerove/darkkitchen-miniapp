@@ -1,0 +1,9 @@
+.git
+.gitignore
+.idea
+.m2repo
+*.iml
+README.md
+LICENSE
+docker-compose.yml
+target
